@@ -94,7 +94,7 @@ public class OAuth2AndCookieSessionIdResolver implements HttpSessionIdResolver {
         return sessionId != null ? Collections.singletonList(sessionId) : Collections.emptyList();
     }
 
-    protected void setOAuth2SessionId(HttpServletRequest request, String sessionId) {
+    protected synchronized void setOAuth2SessionId(HttpServletRequest request, String sessionId) {
         String tokenValue = getAccessToken(request);
         OAuth2AccessToken token;
         if (tokenValue == null) {
